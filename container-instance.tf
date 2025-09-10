@@ -33,8 +33,3 @@ resource "azurerm_container_group" "snake_game" {
   }
 }
 
-# Output the container URL
-output "container_url" {
-  description = "URL of the Snake Game container"
-  value       = "http://${azurerm_container_group.snake_game.fqdn}"
-}
