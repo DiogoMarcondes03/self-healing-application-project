@@ -1,17 +1,18 @@
 # app-service.tf - App Service Configuration
 
-# App Service Plan (FREE tier)
+# App Service Plan - BASIC TIER (due to quota limitations)
 resource "azurerm_service_plan" "main" {
   name                = "asp-${var.project_name}-${var.environment}"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
   os_type             = "Linux"
-  sku_name            = "F1"  # FREE tier
+  sku_name            = "B1"  # Basic tier (~$13/month)
 
   tags = {
     Environment = var.environment
     Project     = var.project_name
     Purpose     = "Host Snake Game with health monitoring"
+    Note        = "Using B1 due to F1 quota limitations"
   }
 }
 
