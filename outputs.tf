@@ -5,14 +5,14 @@ output "resource_group_name" {
   value       = azurerm_resource_group.main.name
 }
 
-output "app_service_url" {
-  description = "URL of the Snake Game app"
-  value       = "https://${azurerm_linux_web_app.snake_game.default_hostname}"
+output "container_url" {
+  description = "URL of the Snake Game container"
+  value       = "http://${azurerm_container_group.snake_game.fqdn}"
 }
 
-output "app_service_name" {
-  description = "Name of the App Service"
-  value       = azurerm_linux_web_app.snake_game.name
+output "container_name" {
+  description = "Name of the Container Group"
+  value       = azurerm_container_group.snake_game.name
 }
 
 output "storage_account_name" {
