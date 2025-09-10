@@ -11,9 +11,9 @@ resource "azurerm_container_group" "snake_game" {
 
   container {
     name   = "snake-game-container"
-    image  = "nginx:alpine"  # We'll use nginx to serve static files initially
-    cpu    = "0.5"
-    memory = "1"
+    image  = "nginx:latest"  # We'll use nginx to serve static files initially
+    cpu    = 0.5
+    memory = 1
 
     ports {
       port     = 80
