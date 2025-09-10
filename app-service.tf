@@ -22,6 +22,11 @@ resource "azurerm_linux_web_app" "snake_game" {
   location            = azurerm_service_plan.main.location
   service_plan_id     = azurerm_service_plan.main.id
 
+  # Enable Managed Identity
+  identity {
+    type = "SystemAssigned"
+  }
+
   site_config {
     # Note: always_on not available in F1 (Free) tier
     
