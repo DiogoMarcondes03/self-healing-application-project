@@ -7,7 +7,7 @@ resource "azurerm_key_vault" "main" {
   tenant_id           = data.azurerm_client_config.current.tenant_id
   sku_name            = "standard"
 
-  # Access policy for current user
+  # Access policy for current user only (removed app service reference)
   access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
@@ -22,17 +22,6 @@ resource "azurerm_key_vault" "main" {
       "Set",
       "Get",
       "Delete",
-      "List",
-    ]
-  }
-
-  # Access policy for App Service (for future use)
-  access_policy {
-    tenant_id = data.azurerm_client_config.current.tenant_id
-    object_id = azurerm_linux_web_app.snake_game.identity[0].principal_id
-
-    secret_permissions = [
-      "Get",
       "List",
     ]
   }
