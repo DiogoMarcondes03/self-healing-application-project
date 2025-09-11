@@ -5,24 +5,14 @@ output "resource_group_name" {
   value       = azurerm_resource_group.main.name
 }
 
-output "container_url" {
-  description = "URL of the Snake Game container"
-  value       = "http://${azurerm_container_group.snake_game.fqdn}"
-}
-
-output "container_name" {
-  description = "Name of the Container Group"
-  value       = azurerm_container_group.snake_game.name
+output "static_website_url" {
+  description = "URL of the Snake Game static website"
+  value       = azurerm_storage_account.main.primary_web_endpoint
 }
 
 output "storage_account_name" {
   description = "Name of the storage account"
   value       = azurerm_storage_account.main.name
-}
-
-output "static_website_url" {
-  description = "URL of the static website (backup option)"
-  value       = azurerm_storage_account.main.primary_web_endpoint
 }
 
 output "application_insights_key" {

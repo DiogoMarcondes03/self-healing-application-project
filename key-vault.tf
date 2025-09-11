@@ -6,8 +6,12 @@ resource "azurerm_key_vault" "main" {
   resource_group_name = azurerm_resource_group.main.name
   tenant_id           = data.azurerm_client_config.current.tenant_id
   sku_name            = "standard"
+  
+  # Add these properties to handle deleted vaults
+  purge_protection_enabled   = false
+  soft_delete_retention_days = 7
 
-  # Access policy for current user only (removed app service reference)
+  # Access policy for current user
   access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
@@ -24,6 +28,7 @@ resource "azurerm_key_vault" "main" {
       "Delete",
       "List",
       "Purge",
+      "Recover",  # Added this permission
     ]
   }
 
@@ -35,12 +40,13 @@ resource "azurerm_key_vault" "main" {
 }
 
 # Store Application Insights connection string in Key Vault
-resource "azurerm_key_vault_secret" "app_insights_connection_string" {
-  name         = "app-insights-connection-string"
-  value        = azurerm_application_insights.main.connection_string
-  key_vault_id = azurerm_key_vault.main.id
-
-  depends_on = [
-    azurerm_key_vault.main
-  ]
-}
+# Commented out to avoid permission issues for now
+# resource "azurerm_key_vault_secret" "app_insights_connection_string" {
+#   name         = "app-insights-connection-string"
+#   value        = azurerm_application_insights.main.connection_string
+#   key_vault_id = azurerm_key_vault.main.id
+# 
+#   depends_on = [
+#     azurerm_key_vault.main
+#   ]
+# }
