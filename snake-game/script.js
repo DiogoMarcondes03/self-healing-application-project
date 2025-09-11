@@ -93,7 +93,7 @@ function moveSnake() {
         generateFood();
         // Increase speed slightly
         clearInterval(gameInterval);
-        gameSpeed = Math.max(50, gameSpeed - 5); // Minimum speed of 50ms
+        gameSpeed = Math.max(70, gameSpeed - 2); // Minimum speed of 50ms
         gameInterval = setInterval(gameLoop, gameSpeed);
     } else {
         snake.pop(); // Remove tail if no food eaten
