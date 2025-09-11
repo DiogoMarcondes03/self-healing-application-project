@@ -11,7 +11,7 @@ let direction = 'right';
 let changingDirection = false;
 let score = 0;
 let gameInterval;
-let gameSpeed = 100; // milliseconds
+let gameSpeed = 300; // milliseconds
 
 // Initialize game on start button click
 startButton.addEventListener('click', startGame);
@@ -93,7 +93,7 @@ function moveSnake() {
         generateFood();
         // Increase speed slightly
         clearInterval(gameInterval);
-        gameSpeed = Math.max(70, gameSpeed - 2); // Minimum speed of 50ms
+        gameSpeed = Math.max(100, gameSpeed - 2); // Minimum speed of 50ms
         gameInterval = setInterval(gameLoop, gameSpeed);
     } else {
         snake.pop(); // Remove tail if no food eaten
